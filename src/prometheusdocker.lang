@@ -1,0 +1,195 @@
+# ===========================================================================
+# Multilingual file for the TOS 7 Docker application "prometheusdocker".
+# File name MUST be: <appid>.lang.  23-language superset (14 required by TOS).
+# The App Center picks the text matching the user's device language;
+# untranslated nodes fall back to English, which the official guide allows.
+# Fields: name (app title), auth (upstream author), descript (up to 512
+# chars), release_note, important (up to 512 chars).
+# Translations come from tosapp.json "translations"; run
+#   tosdocker lang <app>          to re-render this file
+#   tosdocker translate <app>     to see what still needs translating
+# ===========================================================================
+[en-us]
+name         = "Prometheus"
+auth         = "prometheus"
+version      = "@@VERSION@@"
+descript     = "Prometheus is the de-facto metrics database for NAS and homelab monitoring: it scrapes /metrics endpoints from exporters and applications, stores time series, and answers PromQL queries. Pair it with Grafana for dashboards. It runs as a non-root container, and its configuration file is seeded into the application data folder so you can add scrape targets from the NAS."
+release_note = "1. First release: Prometheus 3.16.0 from Docker Hub as a non-root container. Editable scrape config seeded in the application data folder, promtool validation with safe fallback, TSDB stored locally."
+important    = "Requires DockerEngine (installed automatically if missing). Add scrape targets in DockerAppData/prometheusdocker/config/prometheus.yml and restart the app; an invalid file is replaced by the built-in default instead of crash-looping. Time-series data lives in .../prometheus and grows with retention (default 15 days) - watch disk space. Port 9090 serves the query UI and /metrics over plain HTTP; use a TLS reverse proxy before exposing it. Grafana is not bundled - install it separately for dashboards."
+
+[zh-cn]
+name         = "Prometheus"
+auth         = "prometheus"
+version      = "@@VERSION@@"
+descript     = "Prometheus 是 NAS/家庭实验室监控的事实标准指标库：从各类 exporter 和应用抓取 /metrics，按时间序列存储，并提供 PromQL 查询。配合 Grafana 就能做仪表盘。它以非 root 容器运行，配置文件会播种到应用数据目录，你可以直接在 NAS 上添加抓取目标。"
+release_note = "1. 首个版本：基于 Docker Hub 的 Prometheus 3.16.0，以非 root 容器运行。抓取配置播种在应用数据目录，promtool 校验失败自动回退默认配置，TSDB 本地保存。"
+important    = "需要 DockerEngine（缺失时应用中心会自动安装）。在 DockerAppData/prometheusdocker/config/prometheus.yml 里添加抓取目标后重启应用；文件写坏时会被内置默认配置替换，不会陷入重启循环。时序数据在 .../prometheus，会随保留期（默认 15 天）增长，请留意磁盘占用。9090 端口提供查询界面与 /metrics，纯 HTTP；暴露到公网前请配置带 TLS 的反向代理。本包不含 Grafana，做仪表盘请另行安装。"
+
+[zh-hk]
+name         = "Prometheus"
+auth         = "prometheus"
+version      = "@@VERSION@@"
+descript     = "Prometheus 是 NAS/家庭實驗室監控的事實標準指標庫：從各類 exporter 和應用抓取 /metrics，按時間序列存儲，並提供 PromQL 查詢。配合 Grafana 就能做儀表板。它以非 root 容器運行，設定檔會播種到應用資料目錄，你可以直接在 NAS 上新增抓取目標。"
+release_note = "1. 首個版本：基於 Docker Hub 的 Prometheus 3.16.0，以非 root 容器運行。抓取設定播種在應用資料目錄，promtool 校驗失敗自動回退預設設定，TSDB 本地保存。"
+important    = "需要 DockerEngine（缺少時應用中心會自動安裝）。在 DockerAppData/prometheusdocker/config/prometheus.yml 裡新增抓取目標後重啟應用；檔案寫壞時會被內建預設設定替換，不會陷入重啟循環。時序資料在 .../prometheus，會隨保留期（預設 15 天）增長，請留意磁碟佔用。9090 端口提供查詢介面與 /metrics，純 HTTP；公開到互聯網前請配置帶 TLS 的反向代理。本包不含 Grafana，做儀表板請另行安裝。"
+
+[fr-fr]
+name         = "Prometheus"
+auth         = "prometheus"
+version      = "@@VERSION@@"
+descript     = "Prometheus is the de-facto metrics database for NAS and homelab monitoring: it scrapes /metrics endpoints from exporters and applications, stores time series, and answers PromQL queries. Pair it with Grafana for dashboards. It runs as a non-root container, and its configuration file is seeded into the application data folder so you can add scrape targets from the NAS."
+release_note = "1. First release: Prometheus 3.16.0 from Docker Hub as a non-root container. Editable scrape config seeded in the application data folder, promtool validation with safe fallback, TSDB stored locally."
+important    = "Requires DockerEngine (installed automatically if missing). Add scrape targets in DockerAppData/prometheusdocker/config/prometheus.yml and restart the app; an invalid file is replaced by the built-in default instead of crash-looping. Time-series data lives in .../prometheus and grows with retention (default 15 days) - watch disk space. Port 9090 serves the query UI and /metrics over plain HTTP; use a TLS reverse proxy before exposing it. Grafana is not bundled - install it separately for dashboards."
+
+[de-de]
+name         = "Prometheus"
+auth         = "prometheus"
+version      = "@@VERSION@@"
+descript     = "Prometheus is the de-facto metrics database for NAS and homelab monitoring: it scrapes /metrics endpoints from exporters and applications, stores time series, and answers PromQL queries. Pair it with Grafana for dashboards. It runs as a non-root container, and its configuration file is seeded into the application data folder so you can add scrape targets from the NAS."
+release_note = "1. First release: Prometheus 3.16.0 from Docker Hub as a non-root container. Editable scrape config seeded in the application data folder, promtool validation with safe fallback, TSDB stored locally."
+important    = "Requires DockerEngine (installed automatically if missing). Add scrape targets in DockerAppData/prometheusdocker/config/prometheus.yml and restart the app; an invalid file is replaced by the built-in default instead of crash-looping. Time-series data lives in .../prometheus and grows with retention (default 15 days) - watch disk space. Port 9090 serves the query UI and /metrics over plain HTTP; use a TLS reverse proxy before exposing it. Grafana is not bundled - install it separately for dashboards."
+
+[it-it]
+name         = "Prometheus"
+auth         = "prometheus"
+version      = "@@VERSION@@"
+descript     = "Prometheus is the de-facto metrics database for NAS and homelab monitoring: it scrapes /metrics endpoints from exporters and applications, stores time series, and answers PromQL queries. Pair it with Grafana for dashboards. It runs as a non-root container, and its configuration file is seeded into the application data folder so you can add scrape targets from the NAS."
+release_note = "1. First release: Prometheus 3.16.0 from Docker Hub as a non-root container. Editable scrape config seeded in the application data folder, promtool validation with safe fallback, TSDB stored locally."
+important    = "Requires DockerEngine (installed automatically if missing). Add scrape targets in DockerAppData/prometheusdocker/config/prometheus.yml and restart the app; an invalid file is replaced by the built-in default instead of crash-looping. Time-series data lives in .../prometheus and grows with retention (default 15 days) - watch disk space. Port 9090 serves the query UI and /metrics over plain HTTP; use a TLS reverse proxy before exposing it. Grafana is not bundled - install it separately for dashboards."
+
+[es-es]
+name         = "Prometheus"
+auth         = "prometheus"
+version      = "@@VERSION@@"
+descript     = "Prometheus is the de-facto metrics database for NAS and homelab monitoring: it scrapes /metrics endpoints from exporters and applications, stores time series, and answers PromQL queries. Pair it with Grafana for dashboards. It runs as a non-root container, and its configuration file is seeded into the application data folder so you can add scrape targets from the NAS."
+release_note = "1. First release: Prometheus 3.16.0 from Docker Hub as a non-root container. Editable scrape config seeded in the application data folder, promtool validation with safe fallback, TSDB stored locally."
+important    = "Requires DockerEngine (installed automatically if missing). Add scrape targets in DockerAppData/prometheusdocker/config/prometheus.yml and restart the app; an invalid file is replaced by the built-in default instead of crash-looping. Time-series data lives in .../prometheus and grows with retention (default 15 days) - watch disk space. Port 9090 serves the query UI and /metrics over plain HTTP; use a TLS reverse proxy before exposing it. Grafana is not bundled - install it separately for dashboards."
+
+[hu-hu]
+name         = "Prometheus"
+auth         = "prometheus"
+version      = "@@VERSION@@"
+descript     = "Prometheus is the de-facto metrics database for NAS and homelab monitoring: it scrapes /metrics endpoints from exporters and applications, stores time series, and answers PromQL queries. Pair it with Grafana for dashboards. It runs as a non-root container, and its configuration file is seeded into the application data folder so you can add scrape targets from the NAS."
+release_note = "1. First release: Prometheus 3.16.0 from Docker Hub as a non-root container. Editable scrape config seeded in the application data folder, promtool validation with safe fallback, TSDB stored locally."
+important    = "Requires DockerEngine (installed automatically if missing). Add scrape targets in DockerAppData/prometheusdocker/config/prometheus.yml and restart the app; an invalid file is replaced by the built-in default instead of crash-looping. Time-series data lives in .../prometheus and grows with retention (default 15 days) - watch disk space. Port 9090 serves the query UI and /metrics over plain HTTP; use a TLS reverse proxy before exposing it. Grafana is not bundled - install it separately for dashboards."
+
+[ja-jp]
+name         = "Prometheus"
+auth         = "prometheus"
+version      = "@@VERSION@@"
+descript     = "Prometheus is the de-facto metrics database for NAS and homelab monitoring: it scrapes /metrics endpoints from exporters and applications, stores time series, and answers PromQL queries. Pair it with Grafana for dashboards. It runs as a non-root container, and its configuration file is seeded into the application data folder so you can add scrape targets from the NAS."
+release_note = "1. First release: Prometheus 3.16.0 from Docker Hub as a non-root container. Editable scrape config seeded in the application data folder, promtool validation with safe fallback, TSDB stored locally."
+important    = "Requires DockerEngine (installed automatically if missing). Add scrape targets in DockerAppData/prometheusdocker/config/prometheus.yml and restart the app; an invalid file is replaced by the built-in default instead of crash-looping. Time-series data lives in .../prometheus and grows with retention (default 15 days) - watch disk space. Port 9090 serves the query UI and /metrics over plain HTTP; use a TLS reverse proxy before exposing it. Grafana is not bundled - install it separately for dashboards."
+
+[ko-kr]
+name         = "Prometheus"
+auth         = "prometheus"
+version      = "@@VERSION@@"
+descript     = "Prometheus is the de-facto metrics database for NAS and homelab monitoring: it scrapes /metrics endpoints from exporters and applications, stores time series, and answers PromQL queries. Pair it with Grafana for dashboards. It runs as a non-root container, and its configuration file is seeded into the application data folder so you can add scrape targets from the NAS."
+release_note = "1. First release: Prometheus 3.16.0 from Docker Hub as a non-root container. Editable scrape config seeded in the application data folder, promtool validation with safe fallback, TSDB stored locally."
+important    = "Requires DockerEngine (installed automatically if missing). Add scrape targets in DockerAppData/prometheusdocker/config/prometheus.yml and restart the app; an invalid file is replaced by the built-in default instead of crash-looping. Time-series data lives in .../prometheus and grows with retention (default 15 days) - watch disk space. Port 9090 serves the query UI and /metrics over plain HTTP; use a TLS reverse proxy before exposing it. Grafana is not bundled - install it separately for dashboards."
+
+[pl-pl]
+name         = "Prometheus"
+auth         = "prometheus"
+version      = "@@VERSION@@"
+descript     = "Prometheus is the de-facto metrics database for NAS and homelab monitoring: it scrapes /metrics endpoints from exporters and applications, stores time series, and answers PromQL queries. Pair it with Grafana for dashboards. It runs as a non-root container, and its configuration file is seeded into the application data folder so you can add scrape targets from the NAS."
+release_note = "1. First release: Prometheus 3.16.0 from Docker Hub as a non-root container. Editable scrape config seeded in the application data folder, promtool validation with safe fallback, TSDB stored locally."
+important    = "Requires DockerEngine (installed automatically if missing). Add scrape targets in DockerAppData/prometheusdocker/config/prometheus.yml and restart the app; an invalid file is replaced by the built-in default instead of crash-looping. Time-series data lives in .../prometheus and grows with retention (default 15 days) - watch disk space. Port 9090 serves the query UI and /metrics over plain HTTP; use a TLS reverse proxy before exposing it. Grafana is not bundled - install it separately for dashboards."
+
+[ru-ru]
+name         = "Prometheus"
+auth         = "prometheus"
+version      = "@@VERSION@@"
+descript     = "Prometheus is the de-facto metrics database for NAS and homelab monitoring: it scrapes /metrics endpoints from exporters and applications, stores time series, and answers PromQL queries. Pair it with Grafana for dashboards. It runs as a non-root container, and its configuration file is seeded into the application data folder so you can add scrape targets from the NAS."
+release_note = "1. First release: Prometheus 3.16.0 from Docker Hub as a non-root container. Editable scrape config seeded in the application data folder, promtool validation with safe fallback, TSDB stored locally."
+important    = "Requires DockerEngine (installed automatically if missing). Add scrape targets in DockerAppData/prometheusdocker/config/prometheus.yml and restart the app; an invalid file is replaced by the built-in default instead of crash-looping. Time-series data lives in .../prometheus and grows with retention (default 15 days) - watch disk space. Port 9090 serves the query UI and /metrics over plain HTTP; use a TLS reverse proxy before exposing it. Grafana is not bundled - install it separately for dashboards."
+
+[tr-tr]
+name         = "Prometheus"
+auth         = "prometheus"
+version      = "@@VERSION@@"
+descript     = "Prometheus is the de-facto metrics database for NAS and homelab monitoring: it scrapes /metrics endpoints from exporters and applications, stores time series, and answers PromQL queries. Pair it with Grafana for dashboards. It runs as a non-root container, and its configuration file is seeded into the application data folder so you can add scrape targets from the NAS."
+release_note = "1. First release: Prometheus 3.16.0 from Docker Hub as a non-root container. Editable scrape config seeded in the application data folder, promtool validation with safe fallback, TSDB stored locally."
+important    = "Requires DockerEngine (installed automatically if missing). Add scrape targets in DockerAppData/prometheusdocker/config/prometheus.yml and restart the app; an invalid file is replaced by the built-in default instead of crash-looping. Time-series data lives in .../prometheus and grows with retention (default 15 days) - watch disk space. Port 9090 serves the query UI and /metrics over plain HTTP; use a TLS reverse proxy before exposing it. Grafana is not bundled - install it separately for dashboards."
+
+[pt-pt]
+name         = "Prometheus"
+auth         = "prometheus"
+version      = "@@VERSION@@"
+descript     = "Prometheus is the de-facto metrics database for NAS and homelab monitoring: it scrapes /metrics endpoints from exporters and applications, stores time series, and answers PromQL queries. Pair it with Grafana for dashboards. It runs as a non-root container, and its configuration file is seeded into the application data folder so you can add scrape targets from the NAS."
+release_note = "1. First release: Prometheus 3.16.0 from Docker Hub as a non-root container. Editable scrape config seeded in the application data folder, promtool validation with safe fallback, TSDB stored locally."
+important    = "Requires DockerEngine (installed automatically if missing). Add scrape targets in DockerAppData/prometheusdocker/config/prometheus.yml and restart the app; an invalid file is replaced by the built-in default instead of crash-looping. Time-series data lives in .../prometheus and grows with retention (default 15 days) - watch disk space. Port 9090 serves the query UI and /metrics over plain HTTP; use a TLS reverse proxy before exposing it. Grafana is not bundled - install it separately for dashboards."
+
+[ar-sa]
+name         = "Prometheus"
+auth         = "prometheus"
+version      = "@@VERSION@@"
+descript     = "Prometheus is the de-facto metrics database for NAS and homelab monitoring: it scrapes /metrics endpoints from exporters and applications, stores time series, and answers PromQL queries. Pair it with Grafana for dashboards. It runs as a non-root container, and its configuration file is seeded into the application data folder so you can add scrape targets from the NAS."
+release_note = "1. First release: Prometheus 3.16.0 from Docker Hub as a non-root container. Editable scrape config seeded in the application data folder, promtool validation with safe fallback, TSDB stored locally."
+important    = "Requires DockerEngine (installed automatically if missing). Add scrape targets in DockerAppData/prometheusdocker/config/prometheus.yml and restart the app; an invalid file is replaced by the built-in default instead of crash-looping. Time-series data lives in .../prometheus and grows with retention (default 15 days) - watch disk space. Port 9090 serves the query UI and /metrics over plain HTTP; use a TLS reverse proxy before exposing it. Grafana is not bundled - install it separately for dashboards."
+
+[cs-cz]
+name         = "Prometheus"
+auth         = "prometheus"
+version      = "@@VERSION@@"
+descript     = "Prometheus is the de-facto metrics database for NAS and homelab monitoring: it scrapes /metrics endpoints from exporters and applications, stores time series, and answers PromQL queries. Pair it with Grafana for dashboards. It runs as a non-root container, and its configuration file is seeded into the application data folder so you can add scrape targets from the NAS."
+release_note = "1. First release: Prometheus 3.16.0 from Docker Hub as a non-root container. Editable scrape config seeded in the application data folder, promtool validation with safe fallback, TSDB stored locally."
+important    = "Requires DockerEngine (installed automatically if missing). Add scrape targets in DockerAppData/prometheusdocker/config/prometheus.yml and restart the app; an invalid file is replaced by the built-in default instead of crash-looping. Time-series data lives in .../prometheus and grows with retention (default 15 days) - watch disk space. Port 9090 serves the query UI and /metrics over plain HTTP; use a TLS reverse proxy before exposing it. Grafana is not bundled - install it separately for dashboards."
+
+[he-il]
+name         = "Prometheus"
+auth         = "prometheus"
+version      = "@@VERSION@@"
+descript     = "Prometheus is the de-facto metrics database for NAS and homelab monitoring: it scrapes /metrics endpoints from exporters and applications, stores time series, and answers PromQL queries. Pair it with Grafana for dashboards. It runs as a non-root container, and its configuration file is seeded into the application data folder so you can add scrape targets from the NAS."
+release_note = "1. First release: Prometheus 3.16.0 from Docker Hub as a non-root container. Editable scrape config seeded in the application data folder, promtool validation with safe fallback, TSDB stored locally."
+important    = "Requires DockerEngine (installed automatically if missing). Add scrape targets in DockerAppData/prometheusdocker/config/prometheus.yml and restart the app; an invalid file is replaced by the built-in default instead of crash-looping. Time-series data lives in .../prometheus and grows with retention (default 15 days) - watch disk space. Port 9090 serves the query UI and /metrics over plain HTTP; use a TLS reverse proxy before exposing it. Grafana is not bundled - install it separately for dashboards."
+
+[id-id]
+name         = "Prometheus"
+auth         = "prometheus"
+version      = "@@VERSION@@"
+descript     = "Prometheus is the de-facto metrics database for NAS and homelab monitoring: it scrapes /metrics endpoints from exporters and applications, stores time series, and answers PromQL queries. Pair it with Grafana for dashboards. It runs as a non-root container, and its configuration file is seeded into the application data folder so you can add scrape targets from the NAS."
+release_note = "1. First release: Prometheus 3.16.0 from Docker Hub as a non-root container. Editable scrape config seeded in the application data folder, promtool validation with safe fallback, TSDB stored locally."
+important    = "Requires DockerEngine (installed automatically if missing). Add scrape targets in DockerAppData/prometheusdocker/config/prometheus.yml and restart the app; an invalid file is replaced by the built-in default instead of crash-looping. Time-series data lives in .../prometheus and grows with retention (default 15 days) - watch disk space. Port 9090 serves the query UI and /metrics over plain HTTP; use a TLS reverse proxy before exposing it. Grafana is not bundled - install it separately for dashboards."
+
+[nb-no]
+name         = "Prometheus"
+auth         = "prometheus"
+version      = "@@VERSION@@"
+descript     = "Prometheus is the de-facto metrics database for NAS and homelab monitoring: it scrapes /metrics endpoints from exporters and applications, stores time series, and answers PromQL queries. Pair it with Grafana for dashboards. It runs as a non-root container, and its configuration file is seeded into the application data folder so you can add scrape targets from the NAS."
+release_note = "1. First release: Prometheus 3.16.0 from Docker Hub as a non-root container. Editable scrape config seeded in the application data folder, promtool validation with safe fallback, TSDB stored locally."
+important    = "Requires DockerEngine (installed automatically if missing). Add scrape targets in DockerAppData/prometheusdocker/config/prometheus.yml and restart the app; an invalid file is replaced by the built-in default instead of crash-looping. Time-series data lives in .../prometheus and grows with retention (default 15 days) - watch disk space. Port 9090 serves the query UI and /metrics over plain HTTP; use a TLS reverse proxy before exposing it. Grafana is not bundled - install it separately for dashboards."
+
+[nl-nl]
+name         = "Prometheus"
+auth         = "prometheus"
+version      = "@@VERSION@@"
+descript     = "Prometheus is the de-facto metrics database for NAS and homelab monitoring: it scrapes /metrics endpoints from exporters and applications, stores time series, and answers PromQL queries. Pair it with Grafana for dashboards. It runs as a non-root container, and its configuration file is seeded into the application data folder so you can add scrape targets from the NAS."
+release_note = "1. First release: Prometheus 3.16.0 from Docker Hub as a non-root container. Editable scrape config seeded in the application data folder, promtool validation with safe fallback, TSDB stored locally."
+important    = "Requires DockerEngine (installed automatically if missing). Add scrape targets in DockerAppData/prometheusdocker/config/prometheus.yml and restart the app; an invalid file is replaced by the built-in default instead of crash-looping. Time-series data lives in .../prometheus and grows with retention (default 15 days) - watch disk space. Port 9090 serves the query UI and /metrics over plain HTTP; use a TLS reverse proxy before exposing it. Grafana is not bundled - install it separately for dashboards."
+
+[sv-se]
+name         = "Prometheus"
+auth         = "prometheus"
+version      = "@@VERSION@@"
+descript     = "Prometheus is the de-facto metrics database for NAS and homelab monitoring: it scrapes /metrics endpoints from exporters and applications, stores time series, and answers PromQL queries. Pair it with Grafana for dashboards. It runs as a non-root container, and its configuration file is seeded into the application data folder so you can add scrape targets from the NAS."
+release_note = "1. First release: Prometheus 3.16.0 from Docker Hub as a non-root container. Editable scrape config seeded in the application data folder, promtool validation with safe fallback, TSDB stored locally."
+important    = "Requires DockerEngine (installed automatically if missing). Add scrape targets in DockerAppData/prometheusdocker/config/prometheus.yml and restart the app; an invalid file is replaced by the built-in default instead of crash-looping. Time-series data lives in .../prometheus and grows with retention (default 15 days) - watch disk space. Port 9090 serves the query UI and /metrics over plain HTTP; use a TLS reverse proxy before exposing it. Grafana is not bundled - install it separately for dashboards."
+
+[th-th]
+name         = "Prometheus"
+auth         = "prometheus"
+version      = "@@VERSION@@"
+descript     = "Prometheus is the de-facto metrics database for NAS and homelab monitoring: it scrapes /metrics endpoints from exporters and applications, stores time series, and answers PromQL queries. Pair it with Grafana for dashboards. It runs as a non-root container, and its configuration file is seeded into the application data folder so you can add scrape targets from the NAS."
+release_note = "1. First release: Prometheus 3.16.0 from Docker Hub as a non-root container. Editable scrape config seeded in the application data folder, promtool validation with safe fallback, TSDB stored locally."
+important    = "Requires DockerEngine (installed automatically if missing). Add scrape targets in DockerAppData/prometheusdocker/config/prometheus.yml and restart the app; an invalid file is replaced by the built-in default instead of crash-looping. Time-series data lives in .../prometheus and grows with retention (default 15 days) - watch disk space. Port 9090 serves the query UI and /metrics over plain HTTP; use a TLS reverse proxy before exposing it. Grafana is not bundled - install it separately for dashboards."
+
+[vi-vn]
+name         = "Prometheus"
+auth         = "prometheus"
+version      = "@@VERSION@@"
+descript     = "Prometheus is the de-facto metrics database for NAS and homelab monitoring: it scrapes /metrics endpoints from exporters and applications, stores time series, and answers PromQL queries. Pair it with Grafana for dashboards. It runs as a non-root container, and its configuration file is seeded into the application data folder so you can add scrape targets from the NAS."
+release_note = "1. First release: Prometheus 3.16.0 from Docker Hub as a non-root container. Editable scrape config seeded in the application data folder, promtool validation with safe fallback, TSDB stored locally."
+important    = "Requires DockerEngine (installed automatically if missing). Add scrape targets in DockerAppData/prometheusdocker/config/prometheus.yml and restart the app; an invalid file is replaced by the built-in default instead of crash-looping. Time-series data lives in .../prometheus and grows with retention (default 15 days) - watch disk space. Port 9090 serves the query UI and /metrics over plain HTTP; use a TLS reverse proxy before exposing it. Grafana is not bundled - install it separately for dashboards."
+
