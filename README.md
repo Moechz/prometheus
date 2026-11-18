@@ -13,6 +13,12 @@ Prometheus on TOS 7 through the App Center:
 - `prometheusdocker.svg` — application icon (928 bytes, 3 SVG elements)
 - `docker-compose.yml` — one service, image `prom/prometheus:v3.16.0`
 
+The archive can hold exactly those four files, so the privacy policy travels with the
+package through the `help` field of `config.ini`
+(`https://github.com/Moechz/prometheus/blob/main/PRIVACY.md`, the App Center “Help” link);
+the full text is in [PRIVACY.md](PRIVACY.md) and on
+<https://www.moechz.com/privacy.html> (section 6). Licences and attributions: [NOTICE.md](NOTICE.md).
+
 ## How it works
 
 | | |
@@ -44,8 +50,55 @@ table lists what is created and how it behaves. Nothing else is written.
 
 | Path | Purpose | Created when | Growth bound | Lifecycle |
 |---|---|---|---|---|
-| `/Volume1/DockerAppData/prometheusdocker/data` | Prometheus application data (everything the container writes outside /tmp) | on first start / on demand | bounded by your own data | persistent; kept on uninstall unless you ask to delete it |
-| `/Volume1/DockerAppData/prometheusdocker/config` | Prometheus application data (everything the container writes outside /tmp) | on first start / on demand | bounded by your own data | persistent; kept on uninstall unless you ask to delete it |
+| `/Volume1/DockerAppData/prometheusdocker/data` | time-series database: `wal/`, `chunks_head/`, persisted blocks, `lock` | on first start / on demand | bounded by the retention window (15 days by default) and the number of series | persistent; kept on uninstall unless you ask to delete it |
+| `/Volume1/DockerAppData/prometheusdocker/config` | `prometheus.yml`, the scrape configuration you edit (seeded from the bundled default) | on first start | a few KB | persistent; kept on uninstall unless you ask to delete it |
+
+## Privacy
+
+The application runs entirely on your NAS. **The developer does not collect, receive or have
+access to any data the application processes.** No telemetry, no analytics, no account, no
+licence key and no cloud service.
+
+| Topic | Detail |
+|---|---|
+| Data processed | Metric samples scraped from the targets you configure (metric names, label values such as host names, IP addresses, job/instance names, paths, HTTP status codes), the scrape configuration (`prometheus.yml`, which may contain scrape credentials in plain text), the WAL and runtime state, and container logs. |
+| Where it is stored | `/Volume1/DockerAppData/prometheusdocker/{data,config}` on your NAS, owned by uid 1000. Nothing is uploaded to the developer. |
+| Retention period | **Metric data: 15 days by default** (`--storage.tsdb.retention.time=15d`; older blocks are deleted automatically, and the window bounds disk usage). The configuration is kept until you change it. Container logs follow your DockerEngine log rotation. Nothing expires because it was uploaded — there is no upload. |
+| Your rights | **Access / export**: copy the data folder, or query the read API (`/api/v1/query`). **Correct**: edit `config/prometheus.yml` and restart; the running configuration is shown under *Status → Configuration*. **Delete**: uninstall with “delete data”, or remove the folder after stopping the container. **Restrict**: remove a target from the configuration and its samples age out after the retention window. |
+| Deletion channel | Remove `/Volume1/DockerAppData/prometheusdocker/` yourself (immediate and complete, since the developer never had a copy), or email **moechz@163.com** with the subject “Prometheus data request” (answered within 30 days) for anything concerning the website, the listing or the publishing records. |
+| Security measures | Container runs as uid 1000 (never root), no `privileged`, no host network, no `cap_add`, no Docker socket, one published port (8008 → 9090); image pinned to `prom/prometheus:v3.16.0` and refreshed on upstream fixes. The web UI has **no authentication and is plain HTTP**, so keep it on the LAN or put it behind a TLS reverse proxy with authentication; `prometheus.yml` stores scrape credentials in plain text, so protect the data share. |
+| Third-party sharing | The developer shares nothing. The app contacts only the scrape/alerting/remote-write endpoints **you configure**, plus Docker Hub when the image is pulled. No update check, no advertising, no analytics SDK. |
+| Children | Not directed at children. |
+
+**Full privacy policy:** [PRIVACY.md](PRIVACY.md) —
+<https://github.com/Moechz/prometheus/blob/main/PRIVACY.md> (also the package `help` link and
+the reply to the reviewer) — and the website version at
+<https://www.moechz.com/privacy.html> (section 6, “Applications published in the App Center”).
+
+## Third-party services (API disclosure)
+
+| Service | Endpoint | Data sent | Destination / region |
+|---|---|---|---|
+| Scrape targets you configure | the `targets:` you enter (usually your LAN exporters) | `GET /metrics`, visible to that server as a normal HTTP request | normally your own LAN; a provider's servers if you scrape an internet host |
+| Alerting / remote write / federation (only if you configure them) | the URL you enter | the samples, alerts or metadata that feature sends | the destination you chose |
+| Docker image pull | `registry-1.docker.io` or your registry mirror | anonymous pull request | Docker Hub, US / your mirror |
+| Update check | none — Prometheus does not phone home and this package adds no updater | — | — |
+| Developer website | <https://www.moechz.com/> | only if you open it in a browser | the site's hosting provider |
+
+No data is sold or shared with advertisers. Full detail: `PRIVACY.md` §6.
+
+## Licence and attributions
+
+| Component | Licence | Notes |
+|---|---|---|
+| Prometheus | Apache-2.0 | upstream application, used unmodified inside the image |
+| Container image `prom/prometheus:v3.16.0` | Prometheus Apache-2.0; BusyBox/base system GPL-2.0 | pulled from Docker Hub at install time, not redistributed here |
+| This packaging | MIT (see `LICENSE`) | compose file, metadata, translations, icon, scripts |
+
+“Prometheus” is a project name of the Prometheus Authors; “TerraMaster”, “TOS” and “App
+Center” are trademarks of their respective owners. This is an independent community package
+by Moechz and is not affiliated with the upstream project or TerraMaster. Full details:
+[NOTICE.md](NOTICE.md).
 
 ## Build
 
@@ -77,17 +130,21 @@ bash test/install-and-verify.sh                  # on-device E2E (needs root)
 
 ## Store submission checklist
 
-1. Public GitHub repo (code + README only).
-2. Release **tag `v3.16.0-1`**, assets `prometheusdocker.tar.gz` +
-   `prometheusdocker.tar.gz.sha256` (Docker asset naming: `<app_id>.tar.gz`, **no
-   platform suffix**).
+1. Public GitHub repo (code + `README.md`, `PRIVACY.md`, `NOTICE.md`, `LICENSE`).
+2. Release **tag `v3.16.0-2`**, assets `prometheusdocker_x86_64.tar.gz` /
+   `.sha256` and `prometheusdocker_aarch64.tar.gz` / `.sha256` (Docker asset naming:
+   `<app_id>_<arch>.tar.gz`; the store wants one package per architecture).
 3. Developer platform → Add Application: ID `prometheusdocker`, package type Docker,
-   repository URL, architecture `x86_64`.
-4. Version Management → Add Version `3.16.0-1` → automated validation → review.
+   repository URL, architecture `x86_64` and `aarch64`.
+4. Version Management → Add Version `3.16.0-2` → automated validation → review.
+   In the submission remarks, link the privacy policy
+   (<https://github.com/Moechz/prometheus/blob/main/PRIVACY.md>).
 
-## License / branding
+## Support
 
-Prometheus is distributed by its upstream authors under **Apache-2.0**. The container image is the official image from Docker Hub (`prom/prometheus:v3.16.0`) and is used unmodified; no upstream source code is redistributed here. This packaging is an independent community submission by Moechz and is not affiliated with the upstream project or TerraMaster.
+- Issues and questions: <https://github.com/Moechz/prometheus/issues>
+- E-mail: **moechz@163.com**
+- Privacy policy: [PRIVACY.md](PRIVACY.md) · Licences: [NOTICE.md](NOTICE.md)
 
 ## Limitations
 
